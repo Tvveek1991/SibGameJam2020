@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Linq;
 
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
 
-    private bool byBattery;
-
     private Rigidbody2D rb = null;
     private Vector2 moveVelocity;
 
-    [SerializeField] private Component anim = null;
-    private IPlayerAnimator _anim;
+    [SerializeField] private Component playerAnimator = null;
+    private IPlayerAnimator _playerAnimator;
+
+    [SerializeField] private Component playerLogic = null;
+    private IPlayerLogic _playerLogic;
 
     [SerializeField] private UnityEvent OnDie = null;
     [SerializeField] private UnityEvent OnTakeBattery = null;
@@ -26,14 +28,13 @@ public class PlayerController : MonoBehaviour
     }
     private void CheckInterfaces()
     {
-        _anim = InterfaceTools.GetInteface<IPlayerAnimator>(anim);
-        if (_anim == null)
-            anim = null;
-    }
+        _playerLogic = InterfaceTools.GetInteface<IPlayerLogic>(playerLogic);
+        if (_playerLogic == null)
+            playerLogic = null;
 
-    public void SetByBattery(bool value)
-    {
-        byBattery = value;
+        _playerAnimator = InterfaceTools.GetInteface<IPlayerAnimator>(playerAnimator);
+        if (_playerAnimator == null)
+            playerAnimator = null;
     }
 
     private void Update()
@@ -46,12 +47,10 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
 
         //Вывод анимации в соответствии с направлением движения
-        _anim.OnMove(moveInput);
+        _playerAnimator.OnMove(moveInput);
 
-        if(byBattery && Input.GetKeyDown(KeyCode.Space))
-        {
+        if(_playerLogic.GetByBattery() && Input.GetKeyDown(KeyCode.Space))
             OnTakeBattery?.Invoke();
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

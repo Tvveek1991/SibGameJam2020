@@ -11,12 +11,13 @@ public class DeadBot : MonoBehaviour
     [SerializeField] private UnityEvent OnBatteryOff;
     [SerializeField] private UnityEvent OnVisualContact;
 
-
     IEnergy _energy;
+    IPlayerLogic _playerLogic;
 
     private void Start()
     {
         _energy = FindObjectsOfType<MonoBehaviour>().OfType<IEnergy>().FirstOrDefault();
+        _playerLogic = FindObjectsOfType<MonoBehaviour>().OfType<IPlayerLogic>().FirstOrDefault();
     }
 
     public void TakeBattery()
@@ -41,7 +42,7 @@ public class DeadBot : MonoBehaviour
                 return;
 
             _energy.SetDeadBot(this);
-            collision.GetComponent<PlayerController>().SetByBattery(true);
+            _playerLogic.SetByBattery(true);
             OnVisualContact?.Invoke();
         }
     }
@@ -54,7 +55,7 @@ public class DeadBot : MonoBehaviour
                 return;
 
             _energy.SetDeadBot(null);
-            collision.GetComponent<PlayerController>().SetByBattery(false);
+            _playerLogic.SetByBattery(false);
         }
     }
 }

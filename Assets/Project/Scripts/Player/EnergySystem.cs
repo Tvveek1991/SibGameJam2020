@@ -13,9 +13,13 @@ public class EnergySystem : MonoBehaviour, IEnergy
     [SerializeField] private UnityEventIntInt OnChangeEnergy = null;
     [SerializeField] private UnityEvent OnEnergyIsOver = null;
 
-    private DeadBot activeBot;
-
     [SerializeField] private int maxEnergy;
+
+    private DeadBot activeBot;
+    
+    [SerializeField] private Component playerLogic = null;
+    private IPlayerLogic _playerLogic;
+
     private int _energy;
     private int energy
     {
@@ -39,7 +43,15 @@ public class EnergySystem : MonoBehaviour, IEnergy
     {
         energy = PlayerPrefs.GetInt(KEY, 6);
 
+        CheckInterfaces();
+
         StartCoroutine(LifeTimer());
+    }
+    private void CheckInterfaces()
+    {
+        _playerLogic = InterfaceTools.GetInteface<IPlayerLogic>(playerLogic);
+        if (_playerLogic == null)
+            playerLogic = null;
     }
 
     IEnumerator LifeTimer()
@@ -47,6 +59,10 @@ public class EnergySystem : MonoBehaviour, IEnergy
         while (energy != 0)
         {
             yield return new WaitForSecondsRealtime(timeEnergyLost);
+
+            if (_playerLogic.GetInfinityEnergy())
+                continue;
+
             ChangeEnergy(-1);
         }
     }
