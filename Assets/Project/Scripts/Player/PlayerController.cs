@@ -10,14 +10,14 @@ public class PlayerController : MonoBehaviour
 
     private bool byBattery;
 
-    private Rigidbody2D rb;
+    private Rigidbody2D rb = null;
     private Vector2 moveVelocity;
 
-    [SerializeField] private Component anim;
+    [SerializeField] private Component anim = null;
     private IPlayerAnimator _anim;
 
-    [SerializeField] private UnityEvent OnDie;
-    [SerializeField] private UnityEvent OnTakeBattery;
+    [SerializeField] private UnityEvent OnDie = null;
+    [SerializeField] private UnityEvent OnTakeBattery = null;
 
     private void Start()
     {
@@ -31,29 +31,32 @@ public class PlayerController : MonoBehaviour
             anim = null;
     }
 
+    public void SetByBattery(bool value)
+    {
+        byBattery = value;
+    }
+
     private void Update()
     {
+        if (GameStatus.isGameOver)
+            return;
+
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput.normalized * speed;
+        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
 
         //Вывод анимации в соответствии с направлением движения
         _anim.OnMove(moveInput);
 
-        if(byBattery && Input.GetKey(KeyCode.Space))
+        if(byBattery && Input.GetKeyDown(KeyCode.Space))
         {
             OnTakeBattery?.Invoke();
         }
     }
 
-    private void FixedUpdate()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag.Equals("enemy"))
+        if(collision.gameObject.tag.Equals("enemy"))
         {
             OnDie?.Invoke();
         }

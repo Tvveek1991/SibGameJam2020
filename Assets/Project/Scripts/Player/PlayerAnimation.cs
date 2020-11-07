@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour, IPlayerAnimator
 {
-    private Animator animator;
+    private Animator animator = null;
 
     private void Start()
     {
