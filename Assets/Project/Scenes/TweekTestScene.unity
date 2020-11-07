@@ -358,22 +358,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf1c2864ec40574b80020da1c0680e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLenght: 0
+  startLenght: 10
   sectionNumber: 1
   OnActivate:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1094025048}
-        m_MethodName: SetCableStatus
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 349393974}
         m_MethodName: TakeSmth
         m_Mode: 1
@@ -420,7 +409,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293083394}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1096,22 +1085,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf1c2864ec40574b80020da1c0680e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLenght: 0
+  startLenght: 5
   sectionNumber: 2
   OnActivate:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1094025048}
-        m_MethodName: SetCableStatus
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 349393974}
         m_MethodName: TakeSmth
         m_Mode: 1
@@ -1158,7 +1136,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962079308}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

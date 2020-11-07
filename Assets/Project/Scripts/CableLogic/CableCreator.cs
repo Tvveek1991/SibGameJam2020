@@ -38,6 +38,7 @@ public class CableCreator : MonoBehaviour
 
     private void ThrowCabel()
     {
+        _playerLogic.GetCable().StopAllCoroutines();
         _playerLogic.GetCable().transform.SetParent(transform);
     }
 
