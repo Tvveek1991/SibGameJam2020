@@ -7,7 +7,6 @@ public class EnemyTurret : MonoBehaviour
     public int visionChangeTime = 10;
     public float newConeDelayTime = 1;
     public GameObject visionConePrefab;
-    public GameObject burningFlamesOfFieryDeath;
     private GameObject currentVisionCone;
     private TurretRotation currentRotation = TurretRotation.UP;
 
@@ -17,11 +16,6 @@ public class EnemyTurret : MonoBehaviour
         StartCoroutine("VisionDirectionChange");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     IEnumerator VisionDirectionChange()
     {
@@ -54,6 +48,11 @@ public class EnemyTurret : MonoBehaviour
                 currentVisionCone = Instantiate(visionConePrefab, new Vector2(transform.position.x-1, transform.position.y), Quaternion.Euler(0F, 0F, -90F));
                 break;
         }       
+    }
+
+    public void TurnOffRotation()
+    {
+        StopAllCoroutines();
     }
 
     private void turnClockwise()
