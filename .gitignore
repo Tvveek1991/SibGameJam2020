@@ -15,6 +15,7 @@ ExportedObj/
 *.user
 *.userprefs
 *.pidb
+*.meta
 *.booproj
 *.svd
 *.pdb
