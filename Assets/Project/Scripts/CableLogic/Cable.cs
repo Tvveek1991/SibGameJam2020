@@ -4,21 +4,17 @@ using UnityEngine;
 
 public class Cable : MonoBehaviour
 {
-    private const string KEY = "cableLenght";
-
-    [SerializeField] private int startLenght = 0;
     private int cableLenght;
-    private int _cableLenght
+    private int sectionNumber;
+
+    public void SetData(int lenght, int section)
     {
-        get => cableLenght;
-        set
-        {
-            cableLenght = value;
-        }
+        cableLenght = lenght;
+        sectionNumber = section;
     }
 
-    private void Start()
+    public int GetSection()
     {
-        cableLenght = PlayerPrefs.GetInt(KEY, startLenght);
+        return sectionNumber;
     }
 }

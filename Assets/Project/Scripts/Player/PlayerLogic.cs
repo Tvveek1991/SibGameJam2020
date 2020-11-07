@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 public interface IPlayerLogic
 {
+    PlayerController GetPlayerController();
     void SetInfinityEnergy(bool value);
     bool GetInfinityEnergy();
     void SetByBattery(bool value);
     bool GetByBattery();
+    void SetCable(Cable value);
+    Cable GetCable();
 }
 
 public class PlayerLogic : MonoBehaviour, IPlayerLogic
@@ -16,10 +19,10 @@ public class PlayerLogic : MonoBehaviour, IPlayerLogic
     
     //Нахождение рядом со сломаным ботом
     private bool byBattery;
-    //В руках есть кабель
-    private bool isCableOn;
     //Бесконечная энергия
     private bool isInfinityEnergy;
+
+    private Cable cable;
 
     public bool GetByBattery()
     {
@@ -39,5 +42,19 @@ public class PlayerLogic : MonoBehaviour, IPlayerLogic
     public bool GetInfinityEnergy()
     {
         return isInfinityEnergy;
+    }
+
+    public void SetCable(Cable value)
+    {
+        cable = value;
+    }
+    public Cable GetCable()
+    {
+        return cable;
+    }
+
+    public PlayerController GetPlayerController()
+    {
+        return player;
     }
 }
