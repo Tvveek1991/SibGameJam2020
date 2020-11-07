@@ -4,21 +4,38 @@ using UnityEngine;
 
 public class Cable : MonoBehaviour
 {
-    private const string KEY = "cableLenght";
+    private float cableLenght;
+    private int sectionNumber;
 
-    [SerializeField] private int startLenght = 0;
-    private int cableLenght;
-    private int _cableLenght
+
+
+    public void SetData(int lenght, int section)
     {
-        get => cableLenght;
-        set
-        {
-            cableLenght = value;
-        }
+        cableLenght = lenght;
+        sectionNumber = section;
+
+        StartCoroutine(MoveWithCable());
     }
 
-    private void Start()
+    IEnumerator MoveWithCable()
     {
-        cableLenght = PlayerPrefs.GetInt(KEY, startLenght);
+        while (cableLenght > 0)
+        {
+            yield return new WaitForSecondsRealtime(0.5f);
+
+            Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+            if (moveInput.magnitude == 0)
+                continue;
+
+            cableLenght -= 0.5f;
+        }
+
+        Destroy(this.gameObject);
+    }
+
+    public int GetSection()
+    {
+        return sectionNumber;
     }
 }
