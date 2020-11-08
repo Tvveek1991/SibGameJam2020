@@ -6,10 +6,15 @@ using DG.Tweening;
 
 public class FillBar : MonoBehaviour
 {
-    [SerializeField] private Image fillBar;
+    [SerializeField] private Text textBattery;
+    [SerializeField] private Text textLenght;
 
     public void SetProgress(int progress, int max)
     {
-        fillBar.DOFillAmount((float)progress / max, 1f);
+        textBattery.text = $"Батарейка = {(int)(((float)progress / max) * 100)}";
+    }
+    public void SetProgressLenght(float lenght)
+    {
+        textLenght.text = $"Кабель = {lenght}";
     }
 }

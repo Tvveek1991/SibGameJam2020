@@ -258,9 +258,9 @@ MonoBehaviour:
   OnVisualContact:
     m_PersistentCalls:
       m_Calls: []
-  dialogueName: 
-  dialogueChangeTime: 0
-  dialogText: {fileID: 0}
+  OnDead:
+    m_PersistentCalls:
+      m_Calls: []
   animator: {fileID: 6449592636873869789}
 --- !u!50 &489348594
 Rigidbody2D:
@@ -1830,7 +1830,7 @@ Animator:
   m_GameObject: {fileID: 6241111081732439538}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d6d68e3fb51d85848ad398671c409eb6, type: 2}
+  m_Controller: {fileID: 9100000, guid: d3449edc54f98114aad66853cd6e9e01, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
