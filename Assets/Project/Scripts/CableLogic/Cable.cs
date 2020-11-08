@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Cable : MonoBehaviour
 {
     private float cableLenght;
     private int sectionNumber;
 
-
+    private UnityAction onBreakCable;
 
     public void SetData(int lenght, int section)
     {
@@ -31,11 +32,19 @@ public class Cable : MonoBehaviour
             cableLenght -= 0.5f;
         }
 
-        Destroy(this.gameObject);
+        onBreakCable?.Invoke();
+
+        GetComponent<TrailRenderer>().enabled = false;
+        Destroy(this.gameObject, 2);
     }
 
     public int GetSection()
     {
         return sectionNumber;
+    }
+
+    public void AddListener(UnityAction action)
+    {
+        onBreakCable += action;
     }
 }

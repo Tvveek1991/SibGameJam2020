@@ -4,6 +4,7 @@ using UnityEngine;
 public interface IPlayerLogic
 {
     PlayerController GetPlayerController();
+    PlayerAnimation GetPlayerAnimation();
     void SetInfinityEnergy(bool value);
     bool GetInfinityEnergy();
     void SetByBattery(bool value);
@@ -19,6 +20,7 @@ public class PlayerLogic : MonoBehaviour, IPlayerLogic
 {
 
     [SerializeField] private PlayerController player;
+    [SerializeField] private PlayerAnimation anim;
     
     //Нахождение рядом со сломаным ботом
     private bool byBattery;
@@ -61,6 +63,11 @@ public class PlayerLogic : MonoBehaviour, IPlayerLogic
     public PlayerController GetPlayerController()
     {
         return player;
+    }
+
+    public PlayerAnimation GetPlayerAnimation()
+    {
+        return anim;
     }
 
     public void AddSection()
