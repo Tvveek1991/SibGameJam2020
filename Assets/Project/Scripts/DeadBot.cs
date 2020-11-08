@@ -15,7 +15,7 @@ public class DeadBot : MonoBehaviour
 
     [SerializeField] private UnityEvent OnBatteryOff;
     [SerializeField] private UnityEvent OnVisualContact;
-    [SerializeField] private string dialogueName;
+    [SerializeField] private string dialogueName ="";
     [SerializeField] private float dialogueChangeTime;
     [SerializeField] private TextMeshPro dialogText = null;
     private bool dialogActive = false;
@@ -47,13 +47,10 @@ public class DeadBot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(dialogues);
         if (collision.tag.Equals("Player"))
         {
-            Debug.Log("Is Player");
             if (!isAlive)
                 return;
-            Debug.Log("Is Alive");
             _energy.SetDeadBot(this);
             _playerLogic.SetByBattery(true);
             OnVisualContact?.Invoke();
