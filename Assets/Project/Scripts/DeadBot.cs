@@ -14,6 +14,8 @@ public class DeadBot : MonoBehaviour
     IEnergy _energy;
     IPlayerLogic _playerLogic;
 
+    [SerializeField] private Animator animator = null;
+
     private void Start()
     {
         _energy = FindObjectsOfType<MonoBehaviour>().OfType<IEnergy>().FirstOrDefault();
@@ -26,12 +28,18 @@ public class DeadBot : MonoBehaviour
         {
             isAlive = !isAlive;
             _energy.ChangeEnergy(energyBoost);
+            Die();
         }
         else
         {
             OnBatteryOff?.Invoke();
             print("Place is clear");
         }
+    }
+
+    public void Die()
+    {
+        animator.SetTrigger("Die");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
