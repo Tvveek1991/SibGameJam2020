@@ -18,6 +18,7 @@ public class DeadBot : MonoBehaviour
     [SerializeField] private string dialogueName;
     [SerializeField] private float dialogueChangeTime;
     [SerializeField] private TextMeshPro dialogText = null;
+    private bool dialogActive = false;
 
     private List<DialogueModel> dialogues;
     IEnergy _energy;
@@ -56,7 +57,10 @@ public class DeadBot : MonoBehaviour
             _energy.SetDeadBot(this);
             _playerLogic.SetByBattery(true);
             OnVisualContact?.Invoke();
-            startDialogue();
+            if (!dialogActive)
+            {
+                startDialogue();
+            }
         }
     }
 
@@ -73,6 +77,7 @@ public class DeadBot : MonoBehaviour
 
     private void startDialogue()
     {
+        dialogActive = true;
         var currentDialogue = dialogues.FirstOrDefault(x => x.DialogName == dialogueName);
         if (currentDialogue == null)
         {
@@ -89,6 +94,7 @@ public class DeadBot : MonoBehaviour
     {
         if (startIndex >= Phrases.Count)
         {
+            dialogActive = false;
             yield break;
         }
         dialogText.text = Phrases[startIndex].text;
