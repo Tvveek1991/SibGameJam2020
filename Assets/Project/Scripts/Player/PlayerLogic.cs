@@ -10,6 +10,9 @@ public interface IPlayerLogic
     bool GetByBattery();
     void SetCable(Cable value);
     Cable GetCable();
+    void AddSection();
+    void ClearSection();
+    int GetSection();
 }
 
 public class PlayerLogic : MonoBehaviour, IPlayerLogic
@@ -21,6 +24,8 @@ public class PlayerLogic : MonoBehaviour, IPlayerLogic
     private bool byBattery;
     //Бесконечная энергия
     private bool isInfinityEnergy;
+
+    private int activeSection = 1;
 
     private Cable cable;
 
@@ -56,5 +61,20 @@ public class PlayerLogic : MonoBehaviour, IPlayerLogic
     public PlayerController GetPlayerController()
     {
         return player;
+    }
+
+    public void AddSection()
+    {
+        activeSection++;
+    }
+
+    public void ClearSection()
+    {
+        activeSection = 1;
+    }
+
+    public int GetSection()
+    {
+        return activeSection;
     }
 }
