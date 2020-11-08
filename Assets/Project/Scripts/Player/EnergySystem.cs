@@ -67,6 +67,11 @@ public class EnergySystem : MonoBehaviour, IEnergy
         }
     }
 
+    public void UpAllEnergy()
+    {
+        ChangeEnergy(+100);
+    }
+
     public void ChangeEnergy(int numb)
     {
         print("CHANGE ENERGY ON " + numb);

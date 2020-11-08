@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Linq;
 
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    private bool moveAccess = true;
 
     private Rigidbody2D rb = null;
     private Vector2 moveVelocity;
@@ -37,6 +37,11 @@ public class PlayerController : MonoBehaviour
             playerAnimator = null;
     }
 
+    public void SetMoveAccess(bool value)
+    {
+        moveAccess = value;
+    }
+
     public void SetPosition(Transform savePoint)
     {
         transform.position = savePoint.position;
@@ -44,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (GameStatus.isGameOver)
+        if (GameStatus.isGameOver || !moveAccess)
             return;
 
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));

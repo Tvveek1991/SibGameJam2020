@@ -53,6 +53,7 @@ public class CableCreator : MonoBehaviour
 
         _playerLogic.SetCable(go);
         _playerLogic.GetCable().SetData(startLenght, sectionNumber);
+        _playerLogic.GetCable().AddListener(_playerLogic.GetPlayerAnimation().Pain);
 
         OnActivate?.Invoke();
     }
