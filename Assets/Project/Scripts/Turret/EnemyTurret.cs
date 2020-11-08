@@ -2,6 +2,7 @@
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyTurret : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EnemyTurret : MonoBehaviour
     public float patrolSpeedTime = 5;
     private GameObject currentVisionCone;
     private TurretRotation currentRotation = TurretRotation.UP;
+    
 
     // Start is called before the first frame update
     void Start()

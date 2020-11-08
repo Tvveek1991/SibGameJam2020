@@ -11,10 +11,13 @@ public class Cable : MonoBehaviour
     private UnityAction onBreakCable;
 
     private AudioSource shortCircuit;
+    private FillBar fill;
 
     private void Start()
     {
         shortCircuit = GetComponent<AudioSource>();
+        fill = FindObjectOfType<FillBar>();
+        fill.SetProgressLenght(cableLenght);
     }
 
     public void SetData(int lenght, int section)
@@ -37,6 +40,7 @@ public class Cable : MonoBehaviour
                 continue;
 
             cableLenght -= 0.5f;
+            fill.SetProgressLenght(cableLenght);
         }
 
         onBreakCable?.Invoke();
