@@ -157,7 +157,7 @@ Animator:
   m_GameObject: {fileID: 3250611397808883323}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d3449edc54f98114aad66853cd6e9e01, type: 2}
+  m_Controller: {fileID: 9100000, guid: d6d68e3fb51d85848ad398671c409eb6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1532,6 +1532,7 @@ GameObject:
   - component: {fileID: 8078739880468283362}
   - component: {fileID: 325061839976730238}
   - component: {fileID: 5653529007679498757}
+  - component: {fileID: -7840862407292483496}
   m_Layer: 0
   m_Name: pinck
   m_TagString: Untagged
@@ -1575,6 +1576,9 @@ MonoBehaviour:
   OnVisualContact:
     m_PersistentCalls:
       m_Calls: []
+  dialogueName: 
+  dialogueChangeTime: 0
+  dialogText: {fileID: 0}
   animator: {fileID: 3250611397808883317}
 --- !u!50 &325061839976730238
 Rigidbody2D:
@@ -1613,6 +1617,17 @@ CircleCollider2D:
   m_Offset: {x: 0.25, y: 1.75}
   serializedVersion: 2
   m_Radius: 2
+--- !u!210 &-7840862407292483496
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3250611399811701953}
+  m_Enabled: 1
+  m_SortingLayerID: -577819001
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!1 &3617875814312550265
 GameObject:
   m_ObjectHideFlags: 0
