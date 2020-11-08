@@ -8,7 +8,7 @@ public class EnemyTurret : MonoBehaviour
     public float visionChangeTime = 10;
     public float newConeDelayTime = 1;
     public GameObject visionConePrefab;
-    public bool canMove = false
+    public bool canMove = false;
     public float endX;
     public float endY;
     public float patrolSpeedTime = 5;
