@@ -8,6 +8,7 @@ public class EnemyTurret : MonoBehaviour
     public float visionChangeTime = 10;
     public float newConeDelayTime = 1;
     public GameObject visionConePrefab;
+    public bool canMove = false
     public float endX;
     public float endY;
     public float patrolSpeedTime = 5;
@@ -18,7 +19,10 @@ public class EnemyTurret : MonoBehaviour
     void Start()
     {
         StartCoroutine("VisionDirectionChange");
-        transform.DOMove(new Vector2(endX, endY), patrolSpeedTime).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        if (canMove)
+        {
+            transform.DOMove(new Vector2(endX, endY), patrolSpeedTime).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        }
     }
 
 
