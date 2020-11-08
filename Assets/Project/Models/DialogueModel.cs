@@ -9,10 +9,17 @@ namespace Assets.Project.Models
     public class DialogueModel
     {
         [SerializeField]
+        public OnBase onBase;
+        [SerializeField]
         public string DialogName;
         [SerializeField]
         public string NPCName;
         [SerializeField]
         public List<PhraseModel> Phrases;
     }
+}
+
+public enum OnBase { 
+    NO,
+    YES
 }
