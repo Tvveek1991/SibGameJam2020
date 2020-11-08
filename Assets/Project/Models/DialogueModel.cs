@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System;
+using System.Collections.Generic;
 
 namespace Assets.Project.Models
 {
@@ -8,10 +9,10 @@ namespace Assets.Project.Models
     public class DialogueModel
     {
         [SerializeField]
-        string DialogName;
+        public string DialogName;
         [SerializeField]
-        string NPCName;
+        public string NPCName;
         [SerializeField]
-        PhraseModel[] Phrases;
+        public List<PhraseModel> Phrases;
     }
 }

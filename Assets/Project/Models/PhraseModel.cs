@@ -8,13 +8,13 @@ namespace Assets.Project.Models
     public class PhraseModel
     {
         [SerializeField]
-        Actors actor;
+        public Actors actor;
         [SerializeField]
-        string text;
+        public string text;
     }
 }
 
-enum Actors
+public enum Actors
 {
     NPC,
     PLAYER

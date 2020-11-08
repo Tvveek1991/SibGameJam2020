@@ -10,7 +10,7 @@ public class DialogueSystem : MonoBehaviour
     
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
