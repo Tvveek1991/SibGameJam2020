@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 380928465154310047}
   - component: {fileID: 380928465154310046}
   - component: {fileID: 380928465154310017}
+  - component: {fileID: 6162958337486478642}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -165,6 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c54231003c3eeb1439bc100f2f14a098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  trPlayer: {fileID: 0}
 --- !u!50 &380928465154310047
 Rigidbody2D:
   serializedVersion: 4
@@ -231,3 +234,14 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!210 &6162958337486478642
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380928465154310016}
+  m_Enabled: 1
+  m_SortingLayerID: -577819001
+  m_SortingLayer: 1
+  m_SortingOrder: 2

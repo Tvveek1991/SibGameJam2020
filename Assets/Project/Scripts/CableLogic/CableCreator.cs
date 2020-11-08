@@ -12,6 +12,7 @@ public class CableCreator : MonoBehaviour
     [SerializeField] private int sectionNumber = 0;
 
     [SerializeField] private UnityEvent OnActivate;
+    [SerializeField] private UnityEvent OnThrow;
 
     [SerializeField] private GameObject cable;
 
@@ -32,14 +33,18 @@ public class CableCreator : MonoBehaviour
             if (_playerLogic.GetCable()?.GetSection() + 1 == sectionNumber)
                 ThrowCabel();
 
-            CreateCable();
+            if(_playerLogic.GetCable() == null && _playerLogic.GetSection() == sectionNumber)
+                CreateCable();
         }
     }
 
     private void ThrowCabel()
     {
-        _playerLogic.GetCable().StopAllCoroutines();
-        _playerLogic.GetCable().transform.SetParent(transform);
+        _playerLogic.GetCable()?.StopAllCoroutines();
+        _playerLogic.GetCable()?.transform.SetParent(transform);
+        _playerLogic.SetCable(null);
+
+        OnThrow?.Invoke();
     }
 
     private void CreateCable()
@@ -52,7 +57,7 @@ public class CableCreator : MonoBehaviour
         OnActivate?.Invoke();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag.Equals("Player"))
         {
@@ -61,7 +66,7 @@ public class CableCreator : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
