@@ -15,6 +15,8 @@ public class GameStatus : MonoBehaviour
         print("GAME OVER");
         isGameOver = true;
         OnGameOver?.Invoke();
+
+        Invoke("TryAgain", 2);
     }
 
     public void TryAgain()
