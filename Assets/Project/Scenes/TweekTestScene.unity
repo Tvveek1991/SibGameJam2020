@@ -2131,6 +2131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f864bb63c7f114797f3d5cdf59869a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  electroLine:
+  - {fileID: 1143898280}
   savePoints:
   - {fileID: 1569693147}
   - {fileID: 293083396}

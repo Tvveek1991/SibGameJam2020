@@ -9,6 +9,8 @@ public class SaveSystem : MonoBehaviour
     
     IPlayerLogic _playerLogic;
 
+    [SerializeField] private List<LineBuilder> electroLine;
+
 
     private int index_save
     {
@@ -32,4 +34,8 @@ public class SaveSystem : MonoBehaviour
         index_save = point;
     }
 
+    public int GetCountFinishedLines()
+    {
+        return electroLine.FindAll(p => p.GetIsOver()).Count;
+    }
 }
