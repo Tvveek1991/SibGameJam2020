@@ -4,20 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Jorrik : MonoBehaviour
 {
-    private bool activatable;
+    private bool activatable = true;
     private bool dialogIsActive;
-    public PlayerController playerController; 
+    private bool winConditionMet;
+    public PlayerController playerController;
+    public SaveSystem saveSystem;
+    public UnityEvent wonGame;
+    public UnityEvent dialogStarted;
+    public UnityEvent dialogEnded;
     [SerializeField] TextMeshPro dialogText;
     private List<DialogueModel> dialogues;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
         dialogues = Dialogues.Instance.dialogueList;
-
     }
 
     // Update is called once per frame
@@ -29,9 +34,12 @@ public class Jorrik : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (activatable)
+        if (collision.tag.Equals("Player") && activatable)
         {
-            StartDialog();
+            if (saveSystem.GetCountFinishedLines() == 0 || Input.GetKeyDown(KeyCode.E))
+            {
+                StartDialog();
+            }
         }
     }
 
@@ -39,8 +47,14 @@ public class Jorrik : MonoBehaviour
     {
         activatable = false;
         dialogIsActive = true;
-        playerController.set
-        var currentDialogue = dialogues.FirstOrDefault(x => x.DialogName == SOMENAME );
+        dialogStarted.Invoke();
+        playerController.SetMoveAccess(false);
+        int dialogNumber = saveSystem.GetCountFinishedLines();
+        if (dialogNumber > 3)
+        {
+            winConditionMet = true;
+        }
+        var currentDialogue = dialogues.FirstOrDefault(x => x.DialogName == $"JORRIK_{dialogNumber}");
         if (currentDialogue == null)
         {
             currentDialogue = new DialogueModel();
@@ -56,16 +70,36 @@ public class Jorrik : MonoBehaviour
     {
         if (startIndex >= Phrases.Count)
         {
+            if (winConditionMet)
+            {
+                wonGame.Invoke();
+            }
+            playerController.SetMoveAccess(true);
             dialogIsActive = false;
+            dialogEnded.Invoke();
             yield break;
         }
         dialogText.text = Phrases[startIndex].text;
         dialogText.transform.position = new Vector2(transform.position.x, transform.position.y + 2);
         var dialog = Instantiate(dialogText);
         startIndex++;
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
+        yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.E));
+        yield return new WaitForEndOfFrame();
         Destroy(dialog.transform.gameObject);
         StartCoroutine(DialogueSequence(Phrases, startIndex));
+    }
+
+    IEnumerator WaitFewSecondsAndContinue(List<PhraseModel> Phrases, int startIndex)
+    {
+        yield return new WaitForEndOfFrame();
+
+    }
+
+
+
+    public void ActivateJorrikDialogueAbility()
+    {
+        activatable = true;
     }
 
 }
