@@ -13,30 +13,16 @@ MonoBehaviour:
   m_Name: Dialogues
   m_EditorClassIdentifier: 
   dialogueList:
-  - DialogName: 
-    NPCName: 
+  - onBase: 0
+    DialogName: 1
+    NPCName: JEFF
     Phrases:
     - actor: 0
       text: "\u042F \u041A\u0420\u0410\u0411\u0415\u0413"
-    - actor: 1
-      text: "\u041D\u0415\u0422, \u0422\u042B \u0425\u0423\u0419!"
     - actor: 0
-      text: 
-    - actor: 0
-      text: 
-    - actor: 0
-      text: 
-    - actor: 0
-      text: 
-  - DialogName: 
-    NPCName: 
-    Phrases: []
-  - DialogName: 
-    NPCName: 
-    Phrases: []
-  - DialogName: 
-    NPCName: 
-    Phrases: []
-  - DialogName: 
+      text: "\u041D\u0435\u0442, \u0443 \u0442\u0435\u0431\u044F \u043F\u0440\u043E\u0441\u0442\u043E
+        \u0440\u0443\u043A\u0438 \u0438\u0437 \u0436\u043E\u043F\u044B"
+  - onBase: 0
+    DialogName: 
     NPCName: 
     Phrases: []
