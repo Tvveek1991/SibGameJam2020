@@ -25,7 +25,7 @@ public class CableCreator : MonoBehaviour
 
     private void Update()
     {
-        if (!access)
+        if (!access || sectionNumber < 0)
             return;
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -36,6 +36,11 @@ public class CableCreator : MonoBehaviour
             if(_playerLogic.GetCable() == null && _playerLogic.GetSection() == sectionNumber)
                 CreateCable();
         }
+    }
+
+    public void CloseLine()
+    {
+        sectionNumber = -1;
     }
 
     private void ThrowCabel()

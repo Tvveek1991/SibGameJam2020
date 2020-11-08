@@ -10,6 +10,7 @@ public class LineBuilder : MonoBehaviour
 
     [SerializeField] private GameObject trail;
     [SerializeField] private List<Transform> staitions;
+    private CableCreator firstCableCreator;
 
     private bool isOver
     {
@@ -17,12 +18,17 @@ public class LineBuilder : MonoBehaviour
         set
         {
             PlayerPrefs.SetInt(KEY + lineNumber, value ? 1 : 0);
+
+            if(value)
+                firstCableCreator.CloseLine();
         }
     }
 
     private void Awake()
     {
-        if(isOver)
+        firstCableCreator = staitions[0].GetComponent<CableCreator>();
+
+        if (isOver)
             MakeLines();
     }
 

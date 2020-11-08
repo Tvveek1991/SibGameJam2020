@@ -10,6 +10,13 @@ public class Cable : MonoBehaviour
 
     private UnityAction onBreakCable;
 
+    private AudioSource shortCircuit;
+
+    private void Start()
+    {
+        shortCircuit = GetComponent<AudioSource>();
+    }
+
     public void SetData(int lenght, int section)
     {
         cableLenght = lenght;
@@ -33,7 +40,7 @@ public class Cable : MonoBehaviour
         }
 
         onBreakCable?.Invoke();
-
+        shortCircuit.Play();
         GetComponent<TrailRenderer>().enabled = false;
         Destroy(this.gameObject, 2);
     }

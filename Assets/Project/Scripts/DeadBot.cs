@@ -10,6 +10,7 @@ public class DeadBot : MonoBehaviour
 
     [SerializeField] private UnityEvent OnBatteryOff;
     [SerializeField] private UnityEvent OnVisualContact;
+    [SerializeField] private UnityEvent OnDead;
 
     IEnergy _energy;
     IPlayerLogic _playerLogic;
@@ -29,6 +30,7 @@ public class DeadBot : MonoBehaviour
             isAlive = !isAlive;
             _energy.ChangeEnergy(energyBoost);
             Die();
+            OnDead?.Invoke();
         }
         else
         {
