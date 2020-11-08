@@ -9,34 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f215536a288131446b2850158666ea21, type: 3}
+  m_Script: {fileID: 11500000, guid: fe870c4ce6f3c5049b1487693acda010, type: 3}
   m_Name: Dialogues
   m_EditorClassIdentifier: 
-  dialogueList:
-  - DialogName: 
-    NPCName: 
-    Phrases:
-    - actor: 0
-      text: "\u042F \u041A\u0420\u0410\u0411\u0415\u0413"
-    - actor: 1
-      text: "\u041D\u0415\u0422, \u0422\u042B \u0425\u0423\u0419!"
-    - actor: 0
-      text: 
-    - actor: 0
-      text: 
-    - actor: 0
-      text: 
-    - actor: 0
-      text: 
-  - DialogName: 
-    NPCName: 
-    Phrases: []
-  - DialogName: 
-    NPCName: 
-    Phrases: []
-  - DialogName: 
-    NPCName: 
-    Phrases: []
-  - DialogName: 
-    NPCName: 
-    Phrases: []
+  dialogueList: []
