@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class EnemyTurret : MonoBehaviour
 {
-    public int visionChangeTime = 10;
+    public float visionChangeTime = 10;
     public float newConeDelayTime = 1;
     public GameObject visionConePrefab;
-    public GameObject burningFlamesOfFieryDeath;
+    public float endX;
+    public float endY;
+    public float patrolSpeedTime = 5;
     private GameObject currentVisionCone;
     private TurretRotation currentRotation = TurretRotation.UP;
 
@@ -15,13 +18,9 @@ public class EnemyTurret : MonoBehaviour
     void Start()
     {
         StartCoroutine("VisionDirectionChange");
+        transform.DOMove(new Vector2(endX, endY), patrolSpeedTime).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     IEnumerator VisionDirectionChange()
     {
@@ -53,7 +52,13 @@ public class EnemyTurret : MonoBehaviour
             case TurretRotation.LEFT:
                 currentVisionCone = Instantiate(visionConePrefab, new Vector2(transform.position.x-1, transform.position.y), Quaternion.Euler(0F, 0F, -90F));
                 break;
-        }       
+        }
+        currentVisionCone.transform.parent = gameObject.transform;
+    }
+
+    public void TurnOffRotation()
+    {
+        StopAllCoroutines();
     }
 
     private void turnClockwise()
