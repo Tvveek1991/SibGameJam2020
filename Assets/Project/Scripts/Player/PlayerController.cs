@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private UnityEvent OnDie = null;
     [SerializeField] private UnityEvent OnTakeBattery = null;
 
+    [SerializeField] private AudioSource FootSound;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -61,6 +63,12 @@ public class PlayerController : MonoBehaviour
 
         if(_playerLogic.GetByBattery() && Input.GetKeyDown(KeyCode.Space))
             OnTakeBattery?.Invoke();
+
+        if (moveInput.magnitude > 0 && !FootSound.isPlaying)
+            FootSound.Play();
+
+        if (moveInput.magnitude == 0 && FootSound.isPlaying)
+            FootSound.Stop();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
