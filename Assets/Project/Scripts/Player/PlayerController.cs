@@ -37,6 +37,11 @@ public class PlayerController : MonoBehaviour
             playerAnimator = null;
     }
 
+    public void SetPosition(Transform savePoint)
+    {
+        transform.position = savePoint.position;
+    }
+
     private void Update()
     {
         if (GameStatus.isGameOver)
