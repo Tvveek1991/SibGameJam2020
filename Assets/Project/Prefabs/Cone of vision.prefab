@@ -110,7 +110,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  BurningFlamesOfFieryDeath: {fileID: 21300000, guid: aa5e3c41cfee04545a9da9b6bacb5c6c,
+  BurningFlamesOfFieryDeath: {fileID: 21300000, guid: be69e13455fd508489c4264ee90590d7,
     type: 3}
 --- !u!60 &6977781515062641743
 PolygonCollider2D:
