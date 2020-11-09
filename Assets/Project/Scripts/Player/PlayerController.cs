@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Linq;
 
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    private bool moveAccess = true;
 
     private Rigidbody2D rb = null;
     private Vector2 moveVelocity;
@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private UnityEvent OnDie = null;
     [SerializeField] private UnityEvent OnTakeBattery = null;
+
+    [SerializeField] private AudioSource FootSound;
 
     private void Start()
     {
@@ -37,9 +39,19 @@ public class PlayerController : MonoBehaviour
             playerAnimator = null;
     }
 
+    public void SetMoveAccess(bool value)
+    {
+        moveAccess = value;
+    }
+
+    public void SetPosition(Transform savePoint)
+    {
+        transform.position = savePoint.position;
+    }
+
     private void Update()
     {
-        if (GameStatus.isGameOver)
+        if (GameStatus.isGameOver || !moveAccess)
             return;
 
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -51,6 +63,12 @@ public class PlayerController : MonoBehaviour
 
         if(_playerLogic.GetByBattery() && Input.GetKeyDown(KeyCode.Space))
             OnTakeBattery?.Invoke();
+
+        if (moveInput.magnitude > 0 && !FootSound.isPlaying)
+            FootSound.Play();
+
+        if (moveInput.magnitude == 0 && FootSound.isPlaying)
+            FootSound.Stop();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
